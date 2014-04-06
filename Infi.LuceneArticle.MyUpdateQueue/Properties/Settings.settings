@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Infi.LuceneArticle.LuceneUpdateQueue.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AzureStorageQueueConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="AzureStorageQueueName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">luceneupdatequeue</Value>
+    </Setting>
+    <Setting Name="AzureStorageQueueBlobContainer" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">blobs</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

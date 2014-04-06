@@ -1,0 +1,18 @@
+﻿@model Infi.LuceneArticle.WebInterface.Models.QueryResultModel 
+
+@{
+    ViewBag.Title = "Lucene Search";
+   
+}
+
+@if (Model.Error == null) {
+    <h2>Search results</h2>
+
+    foreach (var result in Model.Results) {
+         <div><a href="@result.Link">@result.Title</a><a href="http://www.infi.nl"></a></div>
+    }
+} else {
+    <h2>Error in query</h2>
+    
+    <div>@Model.Error</div>
+}

@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infi.LuceneArticle", "Infi.LuceneArticle\Infi.LuceneArticle.csproj", "{31B5B0A5-AE2C-4E40-B235-46CE88837126}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infi.LuceneArticle.Helpers", "Infi.LuceneArticle.Helpers\Infi.LuceneArticle.Helpers.csproj", "{3F77427A-4C69-49F1-BAE9-B27CF35A5213}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9A5568BE-251A-429D-8609-E8F5233B0003}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureDirectory", "AzureDirectory\AzureDirectory.csproj", "{6D8758A7-F910-4BA0-B382-D535CA1FF958}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infi.LuceneArticle.WebInterface", "Infi.LuceneArticle.WebInterface\Infi.LuceneArticle.WebInterface.csproj", "{1FA6F41A-7E6A-4994-B48C-AA085479D9AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infi.LuceneArticle.LuceneSupport", "Infi.LuceneArticle.LuceneSupport\Infi.LuceneArticle.LuceneSupport.csproj", "{FC4DFE4C-FD2D-4250-ACF8-01CE318CDA25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infi.LuceneArticle.GutenbergImport.Console", "Infi.LuceneArticle.GutenbergImport.Console\Infi.LuceneArticle.GutenbergImport.Console.csproj", "{C830DDD2-72AB-476D-A151-F94F75B76EFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infi.LuceneArticle.Indexer.Console", "Infi.LuceneArticle.Indexer.Console\Infi.LuceneArticle.Indexer.Console.csproj", "{B0B2E439-1B63-4E13-A2A7-D5A271931589}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infi.LuceneArticle.Indexer", "Infi.LuceneArticle.Indexer\Infi.LuceneArticle.Indexer.csproj", "{BAFE1355-F471-413A-8522-A5D6326AF415}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infi.LuceneArticle.MyAzureDirectory", "Infi.LuceneArticle.MyAzureDirectory\Infi.LuceneArticle.MyAzureDirectory.csproj", "{28467B79-C5D2-4A58-AF1A-31A1212B2E0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infi.LuceneArticle.MyUpdateQueue", "Infi.LuceneArticle.MyUpdateQueue\Infi.LuceneArticle.MyUpdateQueue.csproj", "{268815D3-1499-4E46-B62E-B7E6457C97B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31B5B0A5-AE2C-4E40-B235-46CE88837126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31B5B0A5-AE2C-4E40-B235-46CE88837126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31B5B0A5-AE2C-4E40-B235-46CE88837126}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31B5B0A5-AE2C-4E40-B235-46CE88837126}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F77427A-4C69-49F1-BAE9-B27CF35A5213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F77427A-4C69-49F1-BAE9-B27CF35A5213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F77427A-4C69-49F1-BAE9-B27CF35A5213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F77427A-4C69-49F1-BAE9-B27CF35A5213}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D8758A7-F910-4BA0-B382-D535CA1FF958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D8758A7-F910-4BA0-B382-D535CA1FF958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D8758A7-F910-4BA0-B382-D535CA1FF958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D8758A7-F910-4BA0-B382-D535CA1FF958}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FA6F41A-7E6A-4994-B48C-AA085479D9AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FA6F41A-7E6A-4994-B48C-AA085479D9AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FA6F41A-7E6A-4994-B48C-AA085479D9AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FA6F41A-7E6A-4994-B48C-AA085479D9AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC4DFE4C-FD2D-4250-ACF8-01CE318CDA25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC4DFE4C-FD2D-4250-ACF8-01CE318CDA25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC4DFE4C-FD2D-4250-ACF8-01CE318CDA25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC4DFE4C-FD2D-4250-ACF8-01CE318CDA25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C830DDD2-72AB-476D-A151-F94F75B76EFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C830DDD2-72AB-476D-A151-F94F75B76EFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C830DDD2-72AB-476D-A151-F94F75B76EFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C830DDD2-72AB-476D-A151-F94F75B76EFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0B2E439-1B63-4E13-A2A7-D5A271931589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0B2E439-1B63-4E13-A2A7-D5A271931589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0B2E439-1B63-4E13-A2A7-D5A271931589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0B2E439-1B63-4E13-A2A7-D5A271931589}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAFE1355-F471-413A-8522-A5D6326AF415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAFE1355-F471-413A-8522-A5D6326AF415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAFE1355-F471-413A-8522-A5D6326AF415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAFE1355-F471-413A-8522-A5D6326AF415}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28467B79-C5D2-4A58-AF1A-31A1212B2E0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28467B79-C5D2-4A58-AF1A-31A1212B2E0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28467B79-C5D2-4A58-AF1A-31A1212B2E0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28467B79-C5D2-4A58-AF1A-31A1212B2E0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{268815D3-1499-4E46-B62E-B7E6457C97B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{268815D3-1499-4E46-B62E-B7E6457C97B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{268815D3-1499-4E46-B62E-B7E6457C97B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{268815D3-1499-4E46-B62E-B7E6457C97B6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
