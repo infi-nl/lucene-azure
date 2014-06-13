@@ -7,13 +7,13 @@ using Infi.LuceneArticle.LuceneSupport.Updates.QueueMessages;
 
 namespace Infi.LuceneArticle.LuceneSupport.Indexer {
     public class BackgroundWorkQueueCompleter {
-        private readonly AzureObjectQueue<AbstractDocumentMessage> _azureLuceneUpdateQueue;
-        private readonly BlockingCollection<AzureObjectQueueMessage<AbstractDocumentMessage>> _doneItems;
+        private readonly IAzureObjectQueue<AbstractDocumentMessage> _azureLuceneUpdateQueue;
+        private readonly BlockingCollection<IAzureObjectCloudQueueMessage<AbstractDocumentMessage>> _doneItems;
         private readonly Lazy<Thread> _completerThread;
 
-        public BackgroundWorkQueueCompleter(AzureObjectQueue<AbstractDocumentMessage> azureLuceneUpdateQueue) {
+        public BackgroundWorkQueueCompleter(IAzureObjectQueue<AbstractDocumentMessage> azureLuceneUpdateQueue) {
             _azureLuceneUpdateQueue = azureLuceneUpdateQueue;
-            _doneItems = new BlockingCollection<AzureObjectQueueMessage<AbstractDocumentMessage>>();
+            _doneItems = new BlockingCollection<IAzureObjectCloudQueueMessage<AbstractDocumentMessage>>();
             _completerThread = new Lazy<Thread>(() => new Thread(BackgroundCompleter));
         }
 
@@ -28,7 +28,7 @@ namespace Infi.LuceneArticle.LuceneSupport.Indexer {
                 try {
                     foreach (var doneItem in _doneItems.GetConsumingEnumerable()) {
                         Console.WriteLine(string.Format("Done queue, item {0} is done.", doneItem.Id));
-                        _azureLuceneUpdateQueue.Complete(doneItem);
+                        _azureLuceneUpdateQueue.CompleteMessage(doneItem);
                     }
                 } catch (Exception e) {
                     Debug.WriteLine("Unhandled exception in HandleDoneQueue(): {0}", e);
@@ -37,10 +37,10 @@ namespace Infi.LuceneArticle.LuceneSupport.Indexer {
             }
         }
 
-        public void Complete(AzureObjectQueueMessage<AbstractDocumentMessage> obj) {
+        public void Complete(IAzureObjectCloudQueueMessage<AbstractDocumentMessage> obj) {
             EnsureCompleterThreadIsRunning();
 
-            _azureLuceneUpdateQueue.Complete(obj);
+            _azureLuceneUpdateQueue.CompleteMessage(obj);
         }
     }
 }

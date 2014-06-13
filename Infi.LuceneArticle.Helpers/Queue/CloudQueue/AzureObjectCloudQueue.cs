@@ -10,14 +10,13 @@ using Microsoft.WindowsAzure.Storage.Queue;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Infi.LuceneArticle.Helpers.Queue
+namespace Infi.LuceneArticle.Helpers.Queue.CloudQueue
 {
-    public class AzureObjectQueue<T>
-    {
+    public class AzureObjectCloudQueue<T> : IAzureObjectQueue<T> {
         #region Privates
 
         private readonly int _maxDequeueCount;
-        private readonly CloudQueue _queue;
+        private readonly Microsoft.WindowsAzure.Storage.Queue.CloudQueue _queue;
         private readonly CloudBlobContainer _store;
         private readonly Collection<string> _previouslyDequeuedMessages;
         private readonly TimeSpan _visibilityTimeout;
@@ -28,7 +27,7 @@ namespace Infi.LuceneArticle.Helpers.Queue
 
         #endregion
 
-        public AzureObjectQueue(string connectionString, string queueName, string containerName, int maxDequeueCount = 16, TimeSpan? visibilityTimeout = null) {
+        public AzureObjectCloudQueue(string connectionString, string queueName, string containerName, int maxDequeueCount = 16, TimeSpan? visibilityTimeout = null) {
             _maxDequeueCount = maxDequeueCount;
             _visibilityTimeout = visibilityTimeout ?? TimeSpan.FromMinutes(15);
             var storageAccount = CloudStorageAccount.Parse(connectionString);
@@ -48,9 +47,9 @@ namespace Infi.LuceneArticle.Helpers.Queue
             UploadToBlobStorage(message, messageId);
             AddToQueue(messageId);
         }
-        
-        public AzureObjectQueueMessage<T> GetMessage() {
-            AzureObjectQueueMessage<T> message;
+
+        public IAzureObjectCloudQueueMessage<T> GetMessage() {
+            AzureObjectCloudQueueMessage<T> message;
 
             // find an acceptable message: not a previously dequeued message, and not a faulty message with high dequeue count (e.g.
             // a message without an associated blob)
@@ -79,7 +78,7 @@ namespace Infi.LuceneArticle.Helpers.Queue
 
                 if (message.DequeueCount > _maxDequeueCount) {
                     // Note: DeleteMessage removes itself from _previouslyDequeuedMessages.
-                    Complete(message);
+                    CompleteMessage(message);
                     continue;
                 }
 
@@ -87,7 +86,7 @@ namespace Infi.LuceneArticle.Helpers.Queue
             }
         }
 
-        private AzureObjectQueueMessage<T> CreateMessage(CloudQueueMessage cloudQueueMessage) {
+        private AzureObjectCloudQueueMessage<T> CreateMessage(CloudQueueMessage cloudQueueMessage) {
             T associatedBlob;
             try {
                 associatedBlob = DownloadFromBlobStorage(cloudQueueMessage.AsString);
@@ -97,20 +96,26 @@ namespace Infi.LuceneArticle.Helpers.Queue
                 return null;
             }
 
-            return new AzureObjectQueueMessage<T>(cloudQueueMessage, associatedBlob);
+            return new AzureObjectCloudQueueMessage<T>(cloudQueueMessage, associatedBlob);
         }
 
-        public void Complete(AzureObjectQueueMessage<T> doneItem) {
+        public void CompleteMessage(IAzureObjectCloudQueueMessage<T> doneItem) {
+            if (!(doneItem is AzureObjectCloudQueueMessage<T>)) {
+                throw new Exception("Trying to complete a message from a different IAzureObjectQueue implementation.");
+            }
+
             if (!_previouslyDequeuedMessages.Contains(doneItem.Id)) {
                 throw new Exception("Attempting to dequeue {0}, but this item has already been deleted, or was never in the queue.");
             }
-            
-            Debug.WriteLine(String.Format("Deleting queue message {0}.", doneItem.Id));
 
-            DeleteFromQueue(doneItem.AzureCloudQueueMessage);
-            DeleteFromBlobStorage(doneItem.Id);
+            var doneItemTyped = doneItem as AzureObjectCloudQueueMessage<T>;
 
-            _previouslyDequeuedMessages.Remove(doneItem.Id);
+            Debug.WriteLine(String.Format("Deleting queue message {0}.", doneItemTyped.Id));
+
+            DeleteFromQueue(doneItemTyped.AzureCloudQueueMessage);
+            DeleteFromBlobStorage(doneItemTyped.Id);
+
+            _previouslyDequeuedMessages.Remove(doneItemTyped.Id);
         }
 
         #region Blobs
@@ -149,7 +154,7 @@ namespace Infi.LuceneArticle.Helpers.Queue
 
         #region Azure Initialization
 
-        private static CloudQueue CreateQueue(CloudStorageAccount storageAccount, string queueName) {
+        private static Microsoft.WindowsAzure.Storage.Queue.CloudQueue CreateQueue(CloudStorageAccount storageAccount, string queueName) {
             var queueClient = storageAccount.CreateCloudQueueClient();
             var queue = queueClient.GetQueueReference(queueName);
 

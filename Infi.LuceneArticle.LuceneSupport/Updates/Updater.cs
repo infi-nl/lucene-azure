@@ -4,9 +4,9 @@ using Infi.LuceneArticle.LuceneSupport.Updates.QueueMessages;
 
 namespace Infi.LuceneArticle.LuceneSupport.Updates {
     public class Updater<T> where T : LuceneIndexable {
-        private readonly AzureObjectQueue<AbstractDocumentMessage> _azureLuceneUpdateQueue;
+        private readonly IAzureObjectQueue<AbstractDocumentMessage> _azureLuceneUpdateQueue;
 
-        public Updater(AzureObjectQueue<AbstractDocumentMessage> azureLuceneUpdateQueue) {
+        public Updater(IAzureObjectQueue<AbstractDocumentMessage> azureLuceneUpdateQueue) {
             _azureLuceneUpdateQueue = azureLuceneUpdateQueue;
         }
 

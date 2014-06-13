@@ -1,12 +1,12 @@
 using System;
 using Microsoft.WindowsAzure.Storage.Queue;
 
-namespace Infi.LuceneArticle.Helpers.Queue {
+namespace Infi.LuceneArticle.Helpers.Queue.CloudQueue {
     /// <summary>
     /// Represents a object in the queue
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class AzureObjectQueueMessage<T> {
+    public class AzureObjectCloudQueueMessage<T> : IAzureObjectCloudQueueMessage<T> {
         internal CloudQueueMessage AzureCloudQueueMessage { get; private set; }
 
         /// <summary>
@@ -14,7 +14,7 @@ namespace Infi.LuceneArticle.Helpers.Queue {
         /// </summary>
         public T Value { get; private set; }
 
-        public AzureObjectQueueMessage(CloudQueueMessage azureCloudQueueMessage, T obj) {
+        public AzureObjectCloudQueueMessage(CloudQueueMessage azureCloudQueueMessage, T obj) {
             AzureCloudQueueMessage = azureCloudQueueMessage;
             Value = obj;
         }

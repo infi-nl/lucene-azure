@@ -8,15 +8,15 @@ using Infi.LuceneArticle.LuceneSupport.Updates.QueueMessages;
 
 namespace Infi.LuceneArticle.LuceneSupport.Indexer {
     public class BackgroundWorkQueueReader {
-        private readonly AzureObjectQueue<AbstractDocumentMessage> _azureLuceneUpdateQueue;
+        private readonly IAzureObjectQueue<AbstractDocumentMessage> _azureLuceneUpdateQueue;
         private readonly int _queueBatchLimit;
-        private readonly BlockingCollection<AzureObjectQueueMessage<AbstractDocumentMessage>> _todoItems;
+        private readonly BlockingCollection<IAzureObjectCloudQueueMessage<AbstractDocumentMessage>> _todoItems;
         private readonly Lazy<Thread> _readerThread;
 
-        public BackgroundWorkQueueReader(AzureObjectQueue<AbstractDocumentMessage> azureLuceneUpdateQueue, int queueBatchLimit) {
+        public BackgroundWorkQueueReader(IAzureObjectQueue<AbstractDocumentMessage> azureLuceneUpdateQueue, int queueBatchLimit) {
             _azureLuceneUpdateQueue = azureLuceneUpdateQueue;
             _queueBatchLimit = queueBatchLimit;
-            _todoItems = new BlockingCollection<AzureObjectQueueMessage<AbstractDocumentMessage>>();
+            _todoItems = new BlockingCollection<IAzureObjectCloudQueueMessage<AbstractDocumentMessage>>();
             _readerThread = new Lazy<Thread>(() => new Thread(BackgroundFiller));
         }
 
@@ -45,17 +45,17 @@ namespace Infi.LuceneArticle.LuceneSupport.Indexer {
         /// <summary>
         /// Blocks until at least one item of work is available, and take up to _queueBatchLimit for subsequent processing
         /// </summary>
-        public List<AzureObjectQueueMessage<AbstractDocumentMessage>> ExtractBatchFromWorkQueue() {
+        public List<IAzureObjectCloudQueueMessage<AbstractDocumentMessage>> ExtractBatchFromWorkQueue() {
             EnsureReaderThreadIsRunning();
 
-            var batch = new List<AzureObjectQueueMessage<AbstractDocumentMessage>>();
+            var batch = new List<IAzureObjectCloudQueueMessage<AbstractDocumentMessage>>();
 
             // First, a blocking call
             batch.Add(_todoItems.Take());
 
             // And perhaps more items are waiting.
             var batchSize = 1;
-            AzureObjectQueueMessage<AbstractDocumentMessage> queueItem;
+            IAzureObjectCloudQueueMessage<AbstractDocumentMessage> queueItem;
             while (_todoItems.TryTake(out queueItem) && batchSize < _queueBatchLimit) {
                 batch.Add(queueItem);
                 batchSize++;

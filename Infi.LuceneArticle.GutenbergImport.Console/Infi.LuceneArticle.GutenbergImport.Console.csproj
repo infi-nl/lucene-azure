@@ -75,6 +75,10 @@
       <Project>{FC4DFE4C-FD2D-4250-ACF8-01CE318CDA25}</Project>
       <Name>Infi.LuceneArticle.LuceneSupport</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Infi.LuceneArticle.MyAzureDirectory\Infi.LuceneArticle.MyAzureDirectory.csproj">
+      <Project>{28467b79-c5d2-4a58-af1a-31a1212b2e0e}</Project>
+      <Name>Infi.LuceneArticle.MyAzureDirectory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infi.LuceneArticle.MyUpdateQueue\Infi.LuceneArticle.MyUpdateQueue.csproj">
       <Project>{268815D3-1499-4E46-B62E-B7E6457C97B6}</Project>
       <Name>Infi.LuceneArticle.MyUpdateQueue</Name>
