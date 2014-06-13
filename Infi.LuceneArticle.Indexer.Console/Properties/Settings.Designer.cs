@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Infi.LuceneArticle.MyAzureDirectory.Properties {
+namespace Infi.LuceneArticle.Indexer.Console.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -20,24 +20,6 @@ namespace Infi.LuceneArticle.MyAzureDirectory.Properties {
         public static Settings Default {
             get {
                 return defaultInstance;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("article")]
-        public string AzureDirectoryCatalog {
-            get {
-                return ((string)(this["AzureDirectoryCatalog"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<FILL ME, OR UPDATE .CONFIG FROM RUNNING PROJECT>")]
-        public string AzureDirectoryConnectionString {
-            get {
-                return ((string)(this["AzureDirectoryConnectionString"]));
             }
         }
     }

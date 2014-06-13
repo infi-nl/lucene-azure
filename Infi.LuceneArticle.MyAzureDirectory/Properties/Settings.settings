@@ -2,11 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Infi.LuceneArticle.MyAzureDirectory.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="AzureDirectoryConnectionString" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="AzureDirectoryCatalog" Type="System.String" Scope="Application">
       <Value Profile="(Default)">article</Value>
+    </Setting>
+    <Setting Name="AzureDirectoryConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">&lt;FILL ME, OR UPDATE .CONFIG FROM RUNNING PROJECT&gt;</Value>
     </Setting>
   </Settings>
 </SettingsFile>
