@@ -5,10 +5,11 @@ using Lucene.Net.Documents;
 
 namespace Infi.LuceneArticle.Lucene {
     public class BookLuceneAdapter : LuceneIndexable {
-        private  Book _book { get; set; }
+        // Because this object will round-trip via json, this must be a property - not a field! 
+        private Book Book { get; set; }
     
         public BookLuceneAdapter(Book book) {
-            _book = book;
+            Book = book;
         }
 
         public string IdFieldName {
@@ -16,17 +17,17 @@ namespace Infi.LuceneArticle.Lucene {
         }
 
         public string IdFieldValue {
-            get { return _book.GutenBergId; }
+            get { return Book.GutenBergId; }
         }
 
         public Document ToDocument() {
             var document = new Document();
-            document.Add(new Field("GutenBergId", _book.GutenBergId, Field.Store.YES, Field.Index.NO));
-            document.Add(new Field("Title", _book.Title, Field.Store.YES, Field.Index.NO));
-            document.Add(new Field("ReleaseDate", _book.ReleaseDate.HasValue ? _book.ReleaseDate.Value.ToShortDateString() : string.Empty, Field.Store.YES, Field.Index.NO));
-            document.Add(new Field("Language", _book.Language, Field.Store.YES, Field.Index.NO));
-            document.Add(new Field("Contents", _book.Contents, Field.Store.YES /* todo: willen we dit echt? */, Field.Index.ANALYZED));
-            document.Add(new Field("Author", _book.Author, Field.Store.YES, Field.Index.ANALYZED));
+            document.Add(new Field("GutenBergId", Book.GutenBergId, Field.Store.YES, Field.Index.NO));
+            document.Add(new Field("Title", Book.Title, Field.Store.YES, Field.Index.NO));
+            document.Add(new Field("ReleaseDate", Book.ReleaseDate.HasValue ? Book.ReleaseDate.Value.ToShortDateString() : string.Empty, Field.Store.YES, Field.Index.NO));
+            document.Add(new Field("Language", Book.Language, Field.Store.YES, Field.Index.NO));
+            document.Add(new Field("Contents", Book.Contents, Field.Store.YES /* todo: willen we dit echt? */, Field.Index.ANALYZED));
+            document.Add(new Field("Author", Book.Author, Field.Store.YES, Field.Index.ANALYZED));
 
             return document;
         }
