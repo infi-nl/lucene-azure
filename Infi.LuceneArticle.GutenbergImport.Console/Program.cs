@@ -18,9 +18,11 @@ namespace Infi.LuceneArticle.GutenbergImport.Console
             while (updater.QueueSize > 0)
             {
                
-                System.Console.Out.WriteLine("QueueSize:" + updater.QueueSize);
+                System.Console.Out.WriteLine("Worker process is busy (queue not yet empty)...");
                 Thread.Sleep(2000);
             }
+
+            System.Console.Out.WriteLine("Worker process is done. Press enter to exit this application.");
             System.Console.ReadKey();
         }
     }
